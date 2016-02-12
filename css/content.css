@@ -1,0 +1,18 @@
+
+.dtsession-link {
+	
+}
+
+.dtsession-link-enabled {
+	opacity: 1.0;
+	-webkit-filter: grayscale(0);
+	transition-property: -webkit-filter, opacity;
+	transition-duration: 3s;
+}
+
+.dtsession-link-disabled {
+	opacity: 0.5;
+	-webkit-filter: grayscale(1);
+	transition-property: -webkit-filter, opacity;
+	transition-duration: 3s;	
+}

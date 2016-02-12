@@ -1,0 +1,58 @@
+{
+  "manifest_version": 2,
+
+  "name": "Dynatrace Session Import",
+  "description": "Import Dynatrace sessions from JIRA directly into a running Dynatrace rich client.",
+  "version": "1.2.3",
+ 
+ "icons": { "16": "img/logo_16.png",
+            "48": "img/logo_48.png",
+            "128": "img/logo_128.png" },
+  
+  "content_scripts": [
+        {
+        "matches": [
+            "https://support.dynatrace.com/supportportal/browse/*"
+            ],
+        "js": [ "lib/jquery-1.11.3.min.js", "lib/jQueryRotate.js", "lib/jquery.initialize.js", "js/common.js", "js/content/content.js", "js/content/supportjira.js"],
+		"css": [ "css/content.css" ],
+        "run_at": "document_end"
+        },
+		{
+        "matches": [
+			"https://dev-jira.dynatrace.org/browse/*"
+            ],
+        "js": [ "lib/jquery-1.11.3.min.js", "lib/jQueryRotate.js", "lib/jquery.initialize.js", "js/common.js", "js/content/content.js", "js/content/devjira.js"],
+		"css": [ "css/content.css" ],
+        "run_at": "document_end"
+        }
+    ], 
+  "web_accessible_resources": [
+    "img/dynatrace.png"
+  ],
+  
+   "browser_action": {
+    "default_icon": {                    
+            "19": "img/logo_disabled.png"
+          }    
+   },
+  
+   "background": {
+      "page": "bg.html"
+    
+    },
+  
+  "permissions": [
+    "downloads",
+    "activeTab",
+    "webRequest",
+    "webRequestBlocking",
+    "tabs",
+	"storage",
+	"notifications",
+	"https://support.dynatrace.com/supportportal/browse/*",
+	"https://dev-jira.dynatrace.org/browse/*",
+	"*://localhost/*"
+  ]
+  
+}
