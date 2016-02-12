@@ -1,39 +1,12 @@
-// Copyright (c) 2015 Roland Mungenast
-
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-
-// The above copyright notice and this permission notice shall be included in
-// all copies or substantial portions of the Software.
-
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-// THE SOFTWARE.
-
 //
 // common.js - Global constants / functions for backend and content scripts
 //
 
 // Messages which are sent between bg.js and the content scripts
 var MSG_Import_Request = "request-import";     // content stript requests a session import
-var MSG_Import_Response = "response";          // bg.js response to a requested session import
-var MSG_ConfirmResponse = "confirm-response";
-var MSG_StatusUpdate = "status-update";        // status update about connection state of the client
-
-/*
- click on import icon --> content.js --> MSG_Import_Request --> bg.js
-
-
-*/
-
+var MSG_Import_Response = "response";          // background script informas about finished session import
+var MSG_ConfirmResponse = "confirm-response";  // content script confirms that it received the response (and stopped animiation)
+var MSG_StatusUpdate = "status-update";        // background script sends update about connection status of the client
 
 var IMG_ERROR = "/img/error.png";
 var IMG_IMPORT_SESSION = "img/dynatrace.png";
@@ -103,7 +76,7 @@ function namespace_logging() {
 }
 namespace_logging();
 
-//TODO 
+//TODO:
 // Use standalone functions instead of prototypes:
 // We use this code also within content scripts. While extending String and Array simplifies usage 
 // it may have an impact on other javascript code on a page
