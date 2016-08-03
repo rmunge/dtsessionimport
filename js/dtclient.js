@@ -10,7 +10,8 @@ function namespace_dtclient() {
 	var URL_VERSION_CHECK = "http://localhost:8030/rest/management/version";
 	
 	var log = logging.getLogger("dtclient");
-	var minVersion = "6.3";
+	var minMajorVersion = 6;
+	var minMinorVersion = 3;
     var connectionListeners = [];
 
 	
@@ -115,9 +116,9 @@ function namespace_dtclient() {
 				dtclient.version = undefined;
 				dtclient.error = "No Dynatrace Client detected.";
 			} else {
-				
-				if (!stringStartsWith(result.version, minVersion)) {
-					dtclient.error = "Incompatible version of Dynatrace Client: " + result.version + ". Minimal required version is " + minVersion;
+
+				if (!isVersionGreaterOrEqual(result.version, minMajorVersion, minMinorVersion)) {
+					dtclient.error = "Incompatible version of Dynatrace Client: " + result.version + ". Minimal required version is " + minMajorVersion + "." + minMinorVersion;
 					dtclient.connected = false;
 				} else {
 					dtclient.error = "";
@@ -133,6 +134,24 @@ function namespace_dtclient() {
 		});
 	}
 
+	function isVersionGreaterOrEqual(version, minMajor, minMinor) {
+		
+		var splitVersion = version.split(".");
+		
+		var major = splitVersion[0];
+		var minor = splitVersion[1];
+		
+		if (major == minMajor) {
+			return minor >= minMinor;
+			
+		} else if (major >= minMajor) {
+			return true;
+			
+		} else {
+			return false;
+		}
+	}
+	
 	function loadClientVersion(callback) {
 		
 	$.ajax

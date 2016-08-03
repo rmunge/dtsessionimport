@@ -3,7 +3,7 @@
 
   "name": "Dynatrace Session Import",
   "description": "Import Dynatrace sessions from JIRA directly into a running Dynatrace rich client.",
-  "version": "1.2.3",
+  "version": "1.2.4",
  
  "icons": { "16": "img/logo_16.png",
             "48": "img/logo_48.png",
